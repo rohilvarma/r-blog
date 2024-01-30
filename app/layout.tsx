@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ThemeProvider } from "@/utils/ThemeProvider";
 import "./globals.css";
 import { Navbar } from "@/components";
+import { hind } from "@/utils/Fonts";
 
 export const metadata: Metadata = {
   title: "R-Blog",
@@ -16,9 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`antialiased container bg-white text-text-heading-light dark:bg-dark dark:text-text-heading-dark`}>
+      <body className={`antialiased container ${hind.className} bg-white text-text-heading-light dark:bg-dark dark:text-text-heading-dark`}>
         <ThemeProvider
-          defaultTheme="dark"
+          defaultTheme="system"
           attribute="class"
           enableSystem
           disableTransitionOnChange

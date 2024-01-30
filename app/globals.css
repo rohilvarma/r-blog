@@ -4,6 +4,9 @@
 
 @layer components {
   .container {
-    @apply w-[90%] mx-auto md:max-w-2xl;
+    @apply w-[90%] mx-auto md:max-w-2xl lg:max-w-4xl md:text-lg;
   }
+  .link-pink {
+    @apply text-hot-pink hover:text-pink-700 dark:hover:text-pink-400 duration-200 font-medium;
+  }  
 }
