@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`antialiased container ${hind.className} bg-white text-text-heading-light dark:bg-dark dark:text-text-heading-dark`}>
+      <body className={`antialiased scroll-smooth container ${hind.className} bg-white text-text-heading-light dark:bg-dark dark:text-text-heading-dark`}>
         <ThemeProvider
           defaultTheme="system"
           attribute="class"

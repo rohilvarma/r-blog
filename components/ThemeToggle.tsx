@@ -3,11 +3,11 @@ import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { FaMoon } from "react-icons/fa6";
 import { MdSunny } from "react-icons/md";
+import { iconSize } from "@/utils/constants";
 
 const ThemeToggle = () => {
   const [mounted, setMounted] = useState(false)
   const {theme, setTheme} = useTheme()
-  const iconSize: number = 30
 
   useEffect(() => {
     setMounted(true)
