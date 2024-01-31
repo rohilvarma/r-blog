@@ -1,14 +1,16 @@
-'use client'
+"use client";
 import Link from "next/link";
 import { SideMenuToggle } from ".";
 import { navLinks } from "@/utils/constants";
 import { montserrat } from "@/utils/Fonts";
 import { useMenuToggle } from "@/utils/store";
 const SideMenu = () => {
-  const {isOpen, toggle} = useMenuToggle()
+  const { isOpen } = useMenuToggle();
   return (
     <nav
-      className={`bg-white text-text-heading-light dark:bg-dark dark:text-text-heading-dark md:hidden font-medium opacity-85 fixed h-screen w-screen z-10 top-0 left-0 ${montserrat.className} duration-300 overscroll-contain ${isOpen ? 'block' : 'hidden'}`}
+      className={`bg-white text-text-heading-light dark:bg-dark dark:text-text-heading-dark md:hidden font-medium fixed h-screen w-screen z-10 top-0 left-0 ${
+        montserrat.className
+      } duration-300 ${isOpen ? "block" : "hidden"}`}
     >
       <div className="py-8 flex flex-row-reverse container">
         <SideMenuToggle />

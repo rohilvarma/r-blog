@@ -13,7 +13,7 @@ const Navbar = () => {
         <span className="text-logo-blue">R</span> Blog
       </Link>
       <div className={`hidden md:flex items-center gap-x-4 font-medium ml-auto mr-4 ${montserrat.className}`}>
-        {navLinks.map((navLink) => (
+        {navLinks.filter(link => link.key !== 0).map((navLink) => (
           <Link key={navLink.key} className="" href={navLink.linkRoute}>
             {navLink.name}
           </Link>
