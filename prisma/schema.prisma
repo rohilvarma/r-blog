@@ -7,21 +7,21 @@ generator client {
 
 datasource db {
   provider  = "postgresql"
-  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
-  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
-
-model BlogCard {
-  id          String    @id @default(uuid())
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime? @default(now()) @updatedAt
-  title       String
+  
+model Post {
+  uuid String @id @default(uuid())
+  title String
   description String
-  tags        Tag[]
+  createdAt DateTime
+  updatedAt DateTime @updatedAt
+  tags Tag[]
 }
 
 model Tag {
-  id      String     @id @default(uuid())
-  tagName String
-  blogs   BlogCard[]
+  id Int @id @default(autoincrement())
+  name String @unique
+  posts Post[]
 }

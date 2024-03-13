@@ -4,7 +4,7 @@ import { useMenuToggle } from "@/utils/store";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoCloseSharp } from "react-icons/io5";
 
-const HamburgerToggle = () => {
+const SideMenuToggle = () => {
   const {isOpen, toggle} = useMenuToggle()
   return (
     <div className="md:hidden" onClick={() => toggle()}>
@@ -17,4 +17,4 @@ const HamburgerToggle = () => {
   );
 };
 
-export default HamburgerToggle;
+export default SideMenuToggle;

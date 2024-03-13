@@ -1,4 +1,6 @@
-import { SideMenu, SideMenuToggle, ThemeToggle } from ".";
+import SideMenuToggle from "./SideMenuToggle";
+import SideMenu from "./SideMenu";
+import ThemeToggle from "./ThemeToggle";
 import { montserrat } from "@/utils/Fonts";
 import Link from "next/link";
 import { navLinks } from "@/utils/constants";

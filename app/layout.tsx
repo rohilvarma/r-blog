@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "@/utils/ThemeProvider";
 import "./globals.css";
-import { Navbar } from "@/components";
+import Navbar from "@/components/Navbar";
 import { hind } from "@/utils/Fonts";
 
 export const metadata: Metadata = {
@@ -24,8 +24,8 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-            <Navbar />
-            {children}
+          <Navbar />
+          {children}
         </ThemeProvider>
       </body>
     </html>

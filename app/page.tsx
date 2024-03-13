@@ -1,15 +1,31 @@
-import { BlogCard } from "@/components";
+import BlogCard from "@/components/BlogCard";
 import { montserrat } from "@/utils/Fonts";
-import { IBlogCard } from "@/utils/interfaces";
-import { prisma } from "@/utils/prismaConnector";
+import prisma from "@/utils/prisma-client";
 
-async function getBlogCards() {
-  const data = await prisma.blogCard.findMany()
-  return data
+const getLatestPosts = async() => {
+  const posts = await prisma.post.findMany({
+    select: {
+      updatedAt: true,
+      title: true,
+      description: true,
+      tags: {
+        select: {
+          name: true,
+        }
+      },
+      uuid: true,
+    },
+    orderBy: {
+      updatedAt: "desc"
+    },
+    take: 3
+  })
+  console.log(posts);
+  return posts
 }
+
 export default async function Home() {
-  const blogData: IBlogCard[] = await getBlogCards()
-  
+  const posts = await getLatestPosts()
   return (
     <main className="">
       <section className="">
@@ -20,8 +36,11 @@ export default async function Home() {
       </section>
       <section className="mt-10">
         {
-          blogData.map((data, index) => <BlogCard {...data} key={index} />)
+          posts.map(post => <BlogCard key={post.uuid} {...post} />)
         }
+        {/* {
+          blogData.map((data, index) => <BlogCard {...data} key={index} />)
+        } */}
       </section>
     </main>
   );

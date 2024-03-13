@@ -1,12 +1,11 @@
-import { Url } from "next/dist/shared/lib/router/router";
-
 export interface IBlogCard {
-  id: string;
-  createdAt: Date;
-  updatedAt?: Date | null;
+  uuid: string;
+  updatedAt: Date;
   title: string;
   description: string;
-  tags?: string[];
+  tags?: {
+    name: string
+  }[]
 }
 
 export interface ITag {
