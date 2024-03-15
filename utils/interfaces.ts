@@ -24,3 +24,8 @@ export interface IMenuStore {
   isOpen: boolean;
   toggle: () => void;
 }
+
+export interface ITitle {
+  name: string;
+  detail: string;
+}

@@ -1,8 +1,12 @@
-import BlogCard from "@/components/BlogCard";
-import { montserrat } from "@/utils/Fonts";
+import Title from "@/components/Title";
+import { titleContent } from "@/utils/constants";
 import prisma from "@/utils/prisma-client";
+import { Suspense } from "react";
+import Loading from "./loading";
+import { renderPosts } from "@/utils/lib";
+import { ErrorBoundary } from "next/dist/client/components/error-boundary";
 
-const getLatestPosts = async() => {
+const getLatestPosts = async () => {
   const posts = await prisma.post.findMany({
     select: {
       updatedAt: true,
@@ -11,36 +15,28 @@ const getLatestPosts = async() => {
       tags: {
         select: {
           name: true,
-        }
+        },
       },
       uuid: true,
     },
     orderBy: {
-      updatedAt: "desc"
+      updatedAt: "desc",
     },
-    take: 3
-  })
-  console.log(posts);
-  return posts
-}
+    take: 3,
+  });
+  return posts;
+};
 
 export default async function Home() {
-  const posts = await getLatestPosts()
+  const posts = await getLatestPosts();
+
   return (
     <main className="">
-      <section className="">
-        <h1 className={`${montserrat.className} font-bold text-2xl md:text-3xl`}>Latest</h1>
-        <p className="text-gray-content tracking-wide mt-2">
-          A blog created with Next.JS, Tailwind CSS and Prisma.
-        </p>
-      </section>
+      <Title {...titleContent[0]} />
       <section className="mt-10">
-        {
-          posts.map(post => <BlogCard key={post.uuid} {...post} />)
-        }
-        {/* {
-          blogData.map((data, index) => <BlogCard {...data} key={index} />)
-        } */}
+        <ErrorBoundary>
+          <Suspense fallback={<Loading />}>{renderPosts(posts)}</Suspense>
+        </ErrorBoundary>
       </section>
     </main>
   );
